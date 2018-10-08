@@ -1,0 +1,39 @@
+import productApi from '@/services/ProductApi'
+
+export default {
+  updateListData ({ commit }, value) {
+    commit({ type: 'setListData', value })
+  },
+
+  updateListFilter ({ commit }, value) {
+    commit({ type: 'setListFilter', value })
+  },
+
+  resetList ({ commit }) {
+    commit('resetList')
+  },
+
+  clearDetail ({ commit }) {
+    commit('clearDetail')
+  },
+
+  async getList ({ commit, dispatch, state }) {
+    try {
+      const filter = { ...state.list.filter }
+      Object.keys(filter).forEach(key => {
+        if (filter[key] === undefined) return
+        if (filter[key] === '' || filter[key] === null) delete filter[key]
+        else if (filter[key].start === '' && filter[key].end === '') delete filter[key]
+      })
+      const list = await productApi.list({
+        page: state.list.currentPage,
+        limit: state.list.perPage,
+        order: `${state.list.sortDesc ? '-' : ''}${state.list.sortBy}`,
+        filter
+      })
+      commit({ type: 'setListData', value: { items: list.items, total: list.total } })
+    } catch (error) {
+      throw error
+    }
+  }
+}

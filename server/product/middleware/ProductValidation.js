@@ -11,7 +11,8 @@ exports.create = (reqPath = "body") =>
     category: "string & productCategory",
     subCategory: "string",
     description: "string",
-    images: struct.union(["imageBase64? & string?", "empty"]),
+    images: struct.optional(["url & string"]),
+
     price: "numeric",
     deal: "boolean"
   });
@@ -36,7 +37,7 @@ exports.update = (reqPath = "body") =>
     category: "string & productCategory?",
     subCategory: "string?",
     description: "string?",
-    images: struct.union(["imageBase64? & string?", "empty"]),
+    images: struct.optional(["url & string"]),
     price: "numeric?",
     deal: "boolean?"
   });

@@ -7,16 +7,30 @@ export default {
     perPage: perPage ? Number(perPage) : 10,
     filter: {
       general: '',
-      type: ''
+      category: '',
+      subCategory: '',
+      deal: undefined
     },
     items: []
   },
   detail: {
     product: {
-      name: ''
+      name: '',
+      category: '',
+      subCategory: '',
+      description: '',
+      images: [],
+      price: 0,
+      deal: false
     },
     modifiedProduct: {
-      name: ''
+      name: '',
+      category: '',
+      subCategory: '',
+      description: '',
+      images: [],
+      price: 0,
+      deal: false
     }
   }
 }

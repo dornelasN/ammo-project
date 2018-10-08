@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <header class="title-header">
-      <img src="@/assets/images/brand/mmartan-logo.png" width="200px" height="75px" />
-    </header>
     <router-view/>
   </div>
 </template>
