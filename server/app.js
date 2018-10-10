@@ -1,68 +1,38 @@
+// const createError = require('http-errors');
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const morgan = require("morgan");
+const glob = require("glob");
 const mongoose = require("mongoose");
+const https = require("https");
+const fs = require("fs");
+const config = require("./_config/config");
+
+const env = process.env.NODE_ENV || "development";
+
+mongoose.connect(
+  config.db,
+  { config: { autoIndex: true, useNewUrlParser: true } }
+);
+const db = mongoose.connection;
+
+db.on("error", () => {
+  throw new Error(`Unable to connect to database at ${config.db}`);
+});
+
+const models = glob.sync(`${config.root}/**/model/*Model.js`, {
+  ignore: `${config.root}/node_modules/**`
+});
+models.forEach(model => {
+  require(model);
+});
+// const indexRouter = require("./routes/index");
+// const productRouter = require("./routes/product");
+
 const app = express();
+require("./_config/express")(app, config);
+require("./_config/routes")(app, config);
 
-const ProductValidation = require("./product/middleware/ProductValidation");
-const ProductManager = require("./product/ProductManager");
+app.listen(config.port, () => {
+  console.log(`Express server listening on port ${config.port}`);
+});
 
-mongoose.connect("mongodb://localhost:27017/products")
-const db = mongoose.connection
-
-db.on("error", console.error.bind(console, "connection error"))
-db.once("open", function(callback) {
-	console.log("Mongodb Connection Succeeded!")
-})
-
-app.use(morgan("combined"));
-app.use(bodyParser.json());
-app.use(cors());
-
-app.post("/products", 
-  ProductValidation.create(),
-
-  (req, res, next) => 
-    ProductManager.create(req.validData)
-      .then(createdProduct => res.json(createdProduct))
-      .catch(next)
-);
-
-app.get("/products",
-  ProductValidation.list(),
-
-  (req, res, next) =>
-    ProductManager.getList(req.validData)
-      .then(data => res.json(data))
-      .catch(next)
-);
-
-app.get("/products/:productId",
-  ProductValidation.productId(),
-
-  (req, res, next) => 
-    ProductManager.getById(req.validData.productId)
-      .then(product => res.json(product))
-      .catch(next)
-);
-
-app.put("/products/:productId",
-  ProductValidation.update(),
-
-  (req, res, next) => 
-    ProductManager.update(req.validData)
-      .then(product => res.json(product))
-      .catch(next)
-);
-
-app.delete("/products/:productId",
-  ProductValidation.productId(),
-
-  (req, res, next) => 
-    ProductManager.delete(req.validData)
-      .then(() => res.json('product deleted'))
-      .catch(next)
-);
-
-app.listen(process.env.PORT || 8081);
+module.exports = app;
