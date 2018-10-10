@@ -13,10 +13,6 @@ const DEFAULT_ENV_CONFIG = {
   app: {
     name: "ammo-varejo"
   },
-
-  prerenderApiUrl: "http://localhost:4001/api/",
-  prerenderUrl: "http://localhost:4000/",
-
   frontUrl: "https://localhost:8888",
   port: process.env.PORT || 8888
 };
@@ -25,23 +21,23 @@ const DEFAULT_ENV_CONFIG = {
  * Current environment config.
  */
 const config = _.merge(
-	{},
-	DEFAULT_ENV_CONFIG,
-	{
-		// DEVELOPMENT - App development
-		development: {},
+  {},
+  DEFAULT_ENV_CONFIG,
+  {
+    // DEVELOPMENT - App development
+    development: {},
 
-		// HOMOLOG - Production replica for testing purposes
-		homolog: {},
+    // HOMOLOG - Production replica for testing purposes
+    homolog: {},
 
-		// PRODUCTION - Public access
-		// TODO : CREATE Heroku Website, mongodb?
-		production: {
-			frontUrl: 'HEROKU-WEBSITE-HERE',
-			port: process.env.PORT || 8080,
-			db: 'mongodb://app:amm0m0ng0@localhost/ammovarejo',
-		},
-	}[env],
+    // PRODUCTION - Public access
+    // TODO : CREATE Heroku Website, mongodb?
+    production: {
+      frontUrl: "HEROKU-WEBSITE-HERE",
+      port: process.env.PORT || 8080,
+      db: "mongodb://app:amm0m0ng0@localhost/ammovarejo"
+    }
+  }[env]
 );
 
 module.exports = config;

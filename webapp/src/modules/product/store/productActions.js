@@ -1,4 +1,4 @@
-import productApi from '@/services/ProductApi'
+import productApi from '@/modules/product/productApi'
 
 export default {
   updateListData ({ commit }, value) {
@@ -28,7 +28,7 @@ export default {
       const list = await productApi.list({
         page: state.list.currentPage,
         limit: state.list.perPage,
-        order: `${state.list.sortDesc ? '-' : ''}${state.list.sortBy}`,
+        order: 'name',
         filter
       })
       commit({ type: 'setListData', value: { items: list.items, total: list.total } })

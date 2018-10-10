@@ -14,41 +14,37 @@ module.exports = (app, config) => {
 
   if (env !== "test") {
     let whitelist = [];
-    if (env !== "development") {
+    if (env === "development") {
       whitelist = [
-        "https://localhost:3000",
-        "https://localhost:3001",
-        "https://localhost:8888",
-        "https://192.168.0.117:3000"
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:8888",
+        "http://192.168.0.117:3000"
       ];
-    } else if (env === 'homolog') {
-			whitelist = [];
-		} else if (env === 'production') {
-			whitelist = [];
-		}
-		console.log('CORS whitelist: ', whitelist);
-		app.use(
-			cors({
-				origin: whitelist,
-			}),
-		);
-	}
-	
-	app.use(require('prerender-node').set('prerenderServiceUrl', config.prerenderUrl));
+    } else if (env === "production") {
+      whitelist = [];
+    }
+    console.log("CORS whitelist: ", whitelist);
+    app.use(
+      cors({
+        origin: whitelist
+      })
+    );
+  }
 
-	app.use(
-		bodyParser.json({
-			limit: '3mb',
-			type: 'application/json',
-		}),
-	);
+  app.use(
+    bodyParser.json({
+      limit: "3mb",
+      type: "application/json"
+    })
+  );
 
-	app.use(
-		bodyParser.urlencoded({
-			limit: '2.5mb',
-			extended: true,
-		}),
-	);
+  app.use(
+    bodyParser.urlencoded({
+      limit: "2.5mb",
+      extended: true
+    })
+  );
 
-	app.use(compression());
+  app.use(compression());
 };

@@ -75,8 +75,6 @@ exports.formatErrorMessage = error => {
 
 exports.validator = (reqPath, schema) => (req, res, next) => {
   try {
-    console.log(req.validData);
-
     const Schema = exports.struct.partial(schema);
     req.validData = {
       ...req.validData,

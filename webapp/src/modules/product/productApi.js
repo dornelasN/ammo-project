@@ -1,15 +1,12 @@
-import Api from '@/services/Api'
-// import qs from 'qs'
+import axios from 'axios'
 
 export default {
   list ({ page, limit, order, filter }) {
-    return Api().get(
-      `/products`, { page, limit, order, filter }
-    )
+    return axios.get(`/products`, { page, limit, order, filter })
   },
 
   get ({ productId }) {
-    return Api().get(`/products/${productId}`)
+    return axios.get(`/products/${productId}`)
   },
 
   update ({
@@ -22,7 +19,7 @@ export default {
     price,
     deal
   }) {
-    return Api().put(`/products/${productId}`, {
+    return axios.put(`/products/${productId}`, {
       status,
       category,
       subCategory,
@@ -34,7 +31,7 @@ export default {
   },
 
   create ({ category, subCategory, description, images, price, deal }) {
-    return Api().post(`/products/`, {
+    return axios.post(`/products/`, {
       category,
       subCategory,
       description,
@@ -45,6 +42,6 @@ export default {
   },
 
   delete ({ productId }) {
-    return Api().delete(`/products/${productId}`)
+    return axios.delete(`/products/${productId}`)
   }
 }

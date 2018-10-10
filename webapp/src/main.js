@@ -3,8 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 
-import router from './router'
-import store from './store'
+import router from '@/router'
+import store from '@/store'
+
+import './config'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
