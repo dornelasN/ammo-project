@@ -50,9 +50,19 @@ npm run dev
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Creating Mock Products
 
-At the moment there is no testing, if tests are built, explain how to run them.
+From project root, go to server fodler:
+
+```
+cd server
+```
+
+And run the mock products script: 
+
+```
+npm run-script populate_products
+```
 
 ## Built With the NEVM Stack
 
