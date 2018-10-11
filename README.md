@@ -50,9 +50,9 @@ npm run dev
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Creating Mock Products
+### Creating Mock Products
 
-From project root, go to server fodler:
+From project root, go to server folder:
 
 ```
 cd server

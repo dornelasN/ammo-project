@@ -1,8 +1,11 @@
 import axios from 'axios'
+import qs from 'qs'
 
 export default {
   list ({ page, limit, order, filter }) {
-    return axios.get(`/products`, { page, limit, order, filter })
+    return axios.get(
+      `/products?${qs.stringify({ page, limit, order, filter })}`
+    )
   },
 
   get ({ productId }) {
