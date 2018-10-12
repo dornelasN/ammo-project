@@ -8,7 +8,6 @@ export default {
     filter: {
       general: '',
       category: '',
-      subCategory: '',
       deal: undefined
     },
     items: []

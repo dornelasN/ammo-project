@@ -79,7 +79,7 @@ export default {
     selectedFilters () {
       let filterBadges = [];
       const filters = Object.entries(this.productList.filter);
-      const selectedFilters = filters.filter(item => item[1] !== undefined || item[1] !== '' || item[0] !== 'general');
+      const selectedFilters = filters.filter(item => item[0] !== 'general' && item[1]);
       
       filterBadges = selectedFilters.map(item => {
         if (item[0] === 'category') {
