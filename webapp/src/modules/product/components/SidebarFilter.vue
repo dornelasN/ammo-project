@@ -3,14 +3,18 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <h4> Pesquisa </h4>
       <div class="name-search">
-        <font-awesome-icon icon="search" />
-        <input
-          placeholder="Pesquisar produtos por nome..."
-          :value="general"
-          type="text"
-          class="list-search-input"
-          @input="onFilter"
-        />
+        <b-input-group>
+          <b-input-group-text slot="prepend">
+            <font-awesome-icon icon="search" />
+          </b-input-group-text>
+          <b-form-input
+            placeholder="Pesquisar produtos por nome..."
+            :value="general"
+            type="text"
+            class="list-search-input"
+            @input.native="(e) => onFilter(e.target.value)"
+          />
+        </b-input-group>
         <!-- <font-awesome-icon
           v-if="general"
           icon="timesCircle"
@@ -20,15 +24,16 @@
       <div class="category-search">
         <b-button
           v-b-toggle.categoryCollapse
+          @click="collapsed = !collapsed"
           class="category-collapse-button"
         >Categorias
+        <font-awesome-icon :icon="caret" />
         </b-button>
         <b-collapse visible id="categoryCollapse" class="category-collapse">
           <b-button
             v-for="(item, index) in categories"
             :key="index"
             :value="item"
-            :pressed="false"
             :class="{'category-selected': item === category}"
             class="category-collapse-options"
             @click="toggleSelectCategory"
@@ -91,7 +96,10 @@ export default {
     }
   },
   computed: {
-    ...mapState('product', { sortBy: state => state.list.sortBy })
+    ...mapState('product', { sortBy: state => state.list.sortBy }),
+    caret() {
+      return this.collapsed ? 'caret-up' : 'caret-down';
+    }
   },
   watch: {},
 
@@ -99,8 +107,8 @@ export default {
     orderBy (value) {
       this.$emit('update:sortBy', value);
     },
-    onFilter: debounce(function (e) {
-      this.$emit('update:filterGeneral', e.target.value)
+    onFilter: debounce(function (value) {
+      this.$emit('update:filterGeneral', value)
     }, 400),
     toggleSelectCategory (e) {
       this.$emit('update:filterCategory', e.target.value)
@@ -122,76 +130,93 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.sidebar-filter {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-end;
-
-  div {
-    margin-bottom: 15px;
-  }
-
-  .clickable {
-    cursor: pointer;
-  }
-
-  .sort-by-selected {
-    font-weight: bold;
-  }
-
-  .name-search {
+  .sidebar-filter {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
 
-    .list-search-input {
-      margin-left: 5px;
-      flex-grow: 1
-    }
-  }
-
-  .category-search {
-    flex-grow: 1;
-    .category-collapse-button {
-      width: 100%;
-      background-color: #e0b9aa;
-      color: black;
-      border: 0;
-      border-radius: 0;
+    .clickable {
+      cursor: pointer;
     }
 
-    .category-collapse {
+    .sort-by-selected {
+      font-weight: bold;
+    }
+
+    .name-search {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      flex-grow: 1;
-      width: 100%;
-      border: 0;
+      align-items: center;
+      margin-bottom: 15px;
 
-      .category-selected {
-        background-color: #e0b9aa;
+      .input-group {
+        .input-group-prepend {
+          margin-bottom: 0;
+
+          .input-group-text {
+            background-color: #FFF;
+            border: 1px solid #ced4da;
+            border-right: 0;
+          }
+        }
       }
 
-      .category-collapse-options {
+      .list-search-input {
+        flex-grow: 1;
+        border-left: 0;
+
+        &:focus, &:active {
+          border: 1px solid #ced4da;
+          border-left: 0;
+        }
+      }
+    }
+
+    .category-search {
+      flex-grow: 1;
+      margin-bottom: 15px;
+
+      .category-collapse-button {
         width: 100%;
-        background-color: #f2e2dc;
+        background-color: #e0b9aa;
         color: black;
         border: 0;
         border-radius: 0;
       }
+
+      .category-collapse {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-grow: 1;
+        width: 100%;
+        border: 0;
+
+        .category-collapse-options {
+          width: 100%;
+          background-color: #f2e2dc;
+          color: black;
+          border: 0;
+          border-radius: 0;
+
+          &.category-selected {
+            background-color: #e0b9aa;
+          }
+        }
+      }
+    }
+
+    .deal-filter-button {
+      width: 100%;
+      background-color: #f2e2dc;
+      color: black;
+      border: 0;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    .dealSelected {
+      background-color: #e0b9aa;
     }
   }
-
-  .deal-filter-button {
-    width: 100%;
-    background-color: #f2e2dc
-    color: black;
-    border: 0;
-    border-radius: 5px;
-  }
-
-  .dealSelected {
-    background-color: #e0b9aa;
-  }
-}
 </style>

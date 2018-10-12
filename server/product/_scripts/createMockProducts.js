@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const config = require("../../_config/config");
 
 mongoose.connect(
-  config.db,
+  "mongodb://ndornelas:nd1l48@ds133104.mlab.com:33104/ammo-varejo",
   { config: { autoIndex: true }, useNewUrlParser: true }
 );
 

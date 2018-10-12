@@ -12,10 +12,12 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faSearch,
   faTimesCircle,
+  faCaretUp,
+  faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faSearch, faTimesCircle);
+library.add(faSearch, faTimesCircle, faCaretUp, faCaretDown);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 import BootstrapVue from "bootstrap-vue";

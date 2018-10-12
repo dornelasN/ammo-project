@@ -25,7 +25,8 @@ export default {
 
 <style lang="stylus" scoped>
 .title-header {
-  width: 100%;
+  width: 100vw;
+  margin: 0 -15px 30px;
   display: flex;
   justify-content: flex-start;
   background-color: white;
@@ -33,7 +34,5 @@ export default {
   -webkit-box-shadow: 0 5px 6px -4px black;
     -moz-box-shadow: 0 5px 6px -4px black;
         box-shadow: 0 5px 6px -4px black;
-
-  margin-bottom: 30px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="product-list">
+  <div class="container-fluid product-list">
     <Header />
     <div class="row">
       <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">

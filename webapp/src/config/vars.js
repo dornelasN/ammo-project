@@ -16,7 +16,7 @@ export default {
   })(),
   host: {
     dev: 'http://localhost:8888', // development host server
-    prod: 'http://isnertHerokuWebsiteHere', // production host server
+    prod: '', // production host server
     api: '/'
   }
 }
