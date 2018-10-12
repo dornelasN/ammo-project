@@ -2,36 +2,28 @@ export default {
   category (category) {
     return {
       BED: {
-        text: 'Cama',
-        color: 'red'
+        text: 'Cama'
       },
       BATH: {
-        text: 'Banho',
-        color: 'red'
+        text: 'Banho'
       },
       DECORATION: {
-        text: 'Decoração',
-        color: 'red'
+        text: 'Decoração'
       },
       KIDS: {
-        text: 'Kids',
-        color: 'red'
+        text: 'Kids'
       },
       BABY: {
-        text: 'Baby',
-        color: 'red'
+        text: 'Baby'
       },
       SCENT: {
-        text: 'Aroma',
-        color: 'red'
+        text: 'Aroma'
       },
       KITCHEN: {
-        text: 'Mesa',
-        color: 'red'
+        text: 'Mesa'
       },
       OTHER: {
-        text: 'Outros',
-        color: 'red'
+        text: 'Outros'
       }
     }[category]
   },

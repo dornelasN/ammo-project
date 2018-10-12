@@ -96,7 +96,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .product-list {
   height: 100px;
 }

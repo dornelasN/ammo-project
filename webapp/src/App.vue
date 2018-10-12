@@ -10,20 +10,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-$brand-primary: #0000ff;
-
-:root {
-  --primary: #000000;
-  --blue: #ff0000;
-}
-
-.btn-primary {
-  color: #000;
-  background-color: #ff0000;
-  border-color: #ff0000;
-}
-
+<style lang="stylus">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

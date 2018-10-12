@@ -29,5 +29,11 @@ export default {
   display: flex;
   justify-content: flex-start;
   background-color: white;
+
+  -webkit-box-shadow: 0 5px 6px -4px black;
+    -moz-box-shadow: 0 5px 6px -4px black;
+        box-shadow: 0 5px 6px -4px black;
+
+  margin-bottom: 30px;
 }
 </style>

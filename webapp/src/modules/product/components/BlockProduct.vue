@@ -11,7 +11,7 @@
       <span class="product-description">{{ product.description }}</span>
     </div>
     <div class="product-price">
-      {{ product.price }}
+      <block-product-price :isDeal="product.deal" :price="product.price"/>
     </div>
   </div>
 </template>
@@ -19,9 +19,10 @@
 <script>
 import { productFilters } from '@/modules/common/filters'
 import BlockProductImages from './BlockProductImages'
+import BlockProductPrice from './BlockProductPrice'
 
 export default {
-  components: { BlockProductImages },
+  components: { BlockProductImages, BlockProductPrice },
   props: {
     product: {
       type: Object,
@@ -52,9 +53,15 @@ export default {
   background-color: #f2e2dc;
   border-radius: 5px;
 
+  // box shadow
+  -webkit-box-shadow: 0 5px 6px -4px black;
+    -moz-box-shadow: 0 5px 6px -4px black;
+        box-shadow: 0 5px 6px -4px black;
+
   .product-images {
-    width: 220px;
-    margin-right: 10px;
+    max-width: 220px;
+    flex-grow: 0;
+    flex-shrink: 00;
   }
 
   .product-info {
@@ -63,9 +70,11 @@ export default {
     align-items: flex-start;
     justify-content: center;
     font-size: 1.1em;
+    flex-grow: 1;
+    flex-shrink: 1;
 
     .product-name {
-      font-size: 1.5em;
+      font-size: 1.4em;
     }
   }
 }

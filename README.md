@@ -24,28 +24,28 @@ https://docs.mongodb.com/manual/installation/
 ```
 ### Installing
 
-Install the server dependencies at the server folder( '@/server' )
+Install the server dependencies at the server folder( '/server' )
 
 ```
 npm install
 ```
 
-Install the client dependencies at the website folder( '@/website' )
+Install the client dependencies at the website folder( '/website' )
 
 ```
 npm install
 ```
 
-Run the server at the server folder( '@/server' )
+Run the server at the server folder( '/server' )
 
 ```
 npm start
 ```
 
-Run the client at the website folder( '@/website' )
+Run the client at the website folder( '/website' )
 
 ```
-npm run dev
+npm run serve
 ```
 
 End with an example of getting some data out of the system or using it for a little demo

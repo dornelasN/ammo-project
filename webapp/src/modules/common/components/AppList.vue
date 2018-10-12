@@ -1,6 +1,16 @@
 <template>
   <div class="app-list">
-    <h4> {{ listTitle }} ({{ total }})</h4>
+    <h2><strong> {{ listTitle }}</strong><small>  ({{ total }})</small></h2>
+
+    <div class="row selected-filters">
+      <div 
+        class="filter-badges"
+        v-for="(filter, index) in selectedFilters"
+        :key="index"
+      >
+        <h5> <b-badge class="badge">{{ filter }}</b-badge></h5>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -30,7 +40,8 @@
 import AppPagination from './AppPagination'
 import BlockProduct from '@/modules/product/components/BlockProduct'
 import { mapState } from 'vuex'
-
+import { productFilters } from '@/modules/common/filters'
+ 
 export default {
   components: { AppPagination, BlockProduct },
   props: {
@@ -64,7 +75,24 @@ export default {
     listTitle () {
       if (this.general) return this.general
       return 'Lista de Produtos'
-    }
+    },
+    selectedFilters () {
+      let filterBadges = [];
+      const filters = Object.entries(this.productList.filter);
+      const selectedFilters = filters.filter(item => item[1] !== undefined || item[1] !== '' || item[0] !== 'general');
+      
+      filterBadges = selectedFilters.map(item => {
+        if (item[0] === 'category') {
+          if (item[1])
+            return productFilters.category(item[1]).text;
+        } else {
+          if (item[1]) 
+            return 'Promoções';
+        }
+      });
+
+      return filterBadges;
+    },
   },
   watch: {},
 
@@ -74,6 +102,25 @@ export default {
 
 <style lang="stylus" scoped>
 .app-list {
-  padding-right: 40px;
+  padding-right: 15px;
+  margin-top: 0;
+
+  .list-title {
+    font-size: 1.5em;
+  }
+
+  .selected-filters {
+    padding-left: 15px;
+    margin-bottom: 10px;
+
+    .filter-badges {
+      margin-right: 10px;
+      
+      .badge {
+        width: 110px;
+        color: white;
+      }
+    }
+  }
 }
 </style>

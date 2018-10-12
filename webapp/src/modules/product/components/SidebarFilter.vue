@@ -5,7 +5,7 @@
       <div class="name-search">
         <font-awesome-icon icon="search" />
         <input
-          placeholder="Pesquisar produtos..."
+          placeholder="Pesquisar produtos por nome..."
           :value="general"
           type="text"
           class="list-search-input"
@@ -18,31 +18,31 @@
         /> -->
       </div>
       <div class="category-search">
-        <b-btn
+        <b-button
           v-b-toggle.categoryCollapse
           class="category-collapse-button"
         >Categorias
-        </b-btn>
-        <b-collapse id="categoryCollapse" class="category-collapse">
-          <b-btn
-            v-for="(category, index) in categories"
+        </b-button>
+        <b-collapse visible id="categoryCollapse" class="category-collapse">
+          <b-button
+            v-for="(item, index) in categories"
             :key="index"
-            :value="category"
+            :value="item"
             :pressed="false"
-            :class="{categorySelected: checkCategorySelected(category)}"
+            :class="{'category-selected': item === category}"
             class="category-collapse-options"
             @click="toggleSelectCategory"
-          >{{ categoryText(category) }}
-          </b-btn>
+          >{{ categoryText(item) }}
+          </b-button>
         </b-collapse>
       </div>
       <div class="deal-search">
-        <b-btn
+        <b-button
           class="deal-filter-button"
-          :class="{dealSelected: deal}"
+          :class="{'dealSelected': deal}"
           @click="toggleDealFilter"
         > Promoções
-        </b-btn>
+        </b-button>
       </div>
     </div>
   </div>
@@ -70,6 +70,7 @@ export default {
   },
   data () {
     return {
+      collapsed: true,
       categories: [
         'BED',
         'BATH',
@@ -102,7 +103,7 @@ export default {
     },
     toggleDealFilter () {
       if (!this.deal) this.$emit('update:filterDeal', true)
-      else this.$emit('update:filterDeal', false)
+      else this.$emit('update:filterDeal', undefined)
     }
   }
 }
@@ -112,8 +113,8 @@ export default {
 .sidebar-filter {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-items: flex-end;
 
   div {
     margin-bottom: 15px;
@@ -133,7 +134,7 @@ export default {
     flex-grow: 1;
     .category-collapse-button {
       width: 100%;
-      background-color: #d6f5f5;
+      background-color: #e0b9aa;
       color: black;
       border: 0;
       border-radius: 0;
@@ -147,31 +148,30 @@ export default {
       width: 100%;
       border: 0;
 
-      .categorySelected {
-        background-color: #2cbaba;
+      .category-selected {
+        background-color: #e0b9aa;
       }
 
       .category-collapse-options {
         width: 100%;
-        background-color: #eafafa;
+        background-color: #f2e2dc;
         color: black;
         border: 0;
         border-radius: 0;
-        border-left: 2px solid black;
       }
     }
   }
 
   .deal-filter-button {
     width: 100%;
-    background-color: #d6f5f5;
+    background-color: #f2e2dc
     color: black;
     border: 0;
-    border-radius: 0;
+    border-radius: 5px;
   }
 
   .dealSelected {
-    background-color: #2cbaba;
+    background-color: #e0b9aa;
   }
 }
 </style>
