@@ -20,6 +20,7 @@ export default {
   async getList ({ commit, state }) {
     try {
       const filter = { ...state.list.filter }
+      const order = state.list.sortBy || 'name';
       Object.keys(filter).forEach(key => {
         if (filter[key] === undefined) return
         if (filter[key] === '' || filter[key] === null) delete filter[key]
@@ -27,7 +28,7 @@ export default {
       const list = await productApi.list({
         page: state.list.currentPage,
         limit: state.list.perPage,
-        order: 'name',
+        order,
         filter
       })
       commit({

@@ -2,56 +2,57 @@
 // import cloneDeep from 'lodash/cloneDeep'
 
 export default {
-  setListData (state, { value }) {
+  setListData(state, { value }) {
     state.list = {
       ...state.list,
       ...value
-    }
-    localStorage.setItem('productListPerPage', state.list.perPage)
+    };
+    localStorage.setItem("productListPerPage", state.list.perPage);
   },
 
-  setListFilter (state, { value }) {
+  setListFilter(state, { value }) {
     state.list.filter = {
       ...state.list.filter,
       ...value
-    }
+    };
   },
-  resetList (state) {
-    const perPage = localStorage.getItem('productListPerPage')
+  resetList(state) {
+    const perPage = localStorage.getItem("productListPerPage");
 
     state.list = {
       total: 0,
       currentPage: 1,
+      sortBy: "name",
       perPage: perPage ? Number(perPage) : 10,
       filter: {
-        general: '',
-        category: '',
+        general: "",
+        category: "",
         deal: undefined
       },
       items: []
-    }
+    };
   },
 
-  clearDetail (state) {
+  clearDetail(state) {
     state.detail = {
       product: {
-        name: '',
-        category: '',
-        subCategory: '',
-        description: '',
+        name: "",
+        category: "",
+        subCategory: "",
+        description: "",
         images: [],
         price: 0,
         deal: false
       },
       modifiedProduct: {
-        name: '',
-        category: '',
-        subCategory: '',
-        description: '',
+        name: "",
+        category: "",
+        subCategory: "",
+        description: "",
         images: [],
         price: 0,
         deal: false
       }
-    }
+    };
   }
-}
+};

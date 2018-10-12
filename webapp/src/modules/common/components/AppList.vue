@@ -119,6 +119,9 @@ export default {
       .badge {
         width: 110px;
         color: white;
+        -webkit-box-shadow: 0 5px 6px -4px black;
+          -moz-box-shadow: 0 5px 6px -4px black;
+              box-shadow: 0 5px 6px -4px black;
       }
     }
   }

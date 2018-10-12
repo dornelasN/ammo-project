@@ -44,6 +44,12 @@
         > Promoções
         </b-button>
       </div>
+      <div class="list-sort-by">
+        <span> Ordenar por: </span>
+        <span class="clickable" :class="{'sort-by-selected': sortBy === 'name' }" @click="orderBy('name')"> nome </span> - 
+        <span class="clickable" :class="{'sort-by-selected': sortBy === 'category' }" @click="orderBy('category')"> categoria </span> -
+        <span class="clickable" :class="{'sort-by-selected': sortBy === 'price' }" @click="orderBy('price')"> preço original </span>
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +57,7 @@
 <script>
 import debounce from 'lodash/debounce'
 import { productFilters } from '@/modules/common/filters'
+import { mapState } from 'vuex'
 
 export default {
   components: {},
@@ -83,10 +90,16 @@ export default {
       ]
     }
   },
-  computed: {},
+  computed: {
+    ...mapState('product', { sortBy: state => state.list.sortBy })
+  },
   watch: {},
 
   methods: {
+    orderBy (value) {
+      console.log(value);
+      this.$emit('update:sortBy', value);
+    },
     onFilter: debounce(function (e) {
       this.$emit('update:filterGeneral', e.target.value)
     }, 400),
@@ -118,6 +131,14 @@ export default {
 
   div {
     margin-bottom: 15px;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .sort-by-selected {
+    font-weight: bold;
   }
 
   .name-search {

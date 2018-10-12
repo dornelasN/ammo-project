@@ -5,6 +5,7 @@ export default {
     total: 0,
     currentPage: 1,
     perPage: perPage ? Number(perPage) : 10,
+    sortBy: 'name',
     filter: {
       general: '',
       category: '',

@@ -7,6 +7,7 @@
           :general="filterGeneral"
           :category="filterCategory"
           :deal="filterDeal"
+          @update:sortBy="(val) => sortBy = val"
           @update:filterGeneral="(val) => filterGeneral = val"
           @update:filterCategory="(val) => filterCategory = val"
           @update:filterDeal="(val) => filterDeal = val"
@@ -64,9 +65,13 @@ export default {
     filterDeal: (() => generateFilter('deal'))(),
     currentPage: (() => generateComputed('currentPage'))(),
     perPage: (() => generateComputed('perPage'))(),
+    sortBy: (() => generateComputed('sortBy'))(),
     ...mapState('product', { total: state => state.list.total })
   },
   watch: {
+    sortBy () {
+      this.refreshList()
+    },
     filterGeneral () {
       this.refreshList()
     },
