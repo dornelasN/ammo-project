@@ -25,8 +25,8 @@ exports.list = (reqPath = "query") =>
     filter: struct.optional({
       general: "string?",
       status: "productStatus?",
-      category: "productCategory",
-      deal: "boolean?"
+      category: "productCategory?",
+      deal: "string?"
     })
   });
 
