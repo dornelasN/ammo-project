@@ -97,7 +97,6 @@ export default {
 
   methods: {
     orderBy (value) {
-      console.log(value);
       this.$emit('update:sortBy', value);
     },
     onFilter: debounce(function (e) {
