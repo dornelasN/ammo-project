@@ -72,6 +72,22 @@ And run the mock products script:
 npm run-script populate_products
 ```
 
+### Build
+
+From project root, go to the webapp folder and run:
+
+```
+npm run-script build
+```
+
+After the build is complete, move the files inside /webapp/dist to /server/public, and finally run the server again:
+
+```
+npm run dev
+```
+
+The built application should be available at your port 8888.
+
 ## Built With the NEVM Stack
 
 * [Vue.js](https://vuejs.org) - The front-end JavaScript framework used
