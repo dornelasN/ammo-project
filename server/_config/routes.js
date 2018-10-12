@@ -15,6 +15,12 @@ module.exports = (app, config) => {
     require(api)(app);
   });
 
+  app.use('/css', express.static(`${rootPath}/public/css`));
+  app.use('/fonts', express.static(`${rootPath}/public/fonts`));
+  app.use('/img', express.static(`${rootPath}/public/img`));
+  app.use('/js', express.static(`${rootPath}/public/js`));
+  app.use('/assets', express.static(`${rootPath}/public/assets`));
+
   app.all("/*", (req, res) => {
     res
       .status(200)

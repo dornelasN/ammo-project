@@ -33,9 +33,7 @@ const config = _.merge(
     // PRODUCTION - Public access
     // TODO : CREATE Heroku Website, mongodb?
     production: {
-      frontUrl: "HEROKU-WEBSITE-HERE",
-      port: process.env.PORT || 8080,
-      db: "mongodb://app:amm0m0ng0@localhost/ammovarejo"
+      port: 8080,
     }
   }[env]
 );
