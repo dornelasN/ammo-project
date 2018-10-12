@@ -5,6 +5,14 @@ The project main purpose is to build a Single Page Application, which will be a 
 This project is going to be published in Heroku (in the future I'll make a link here to connect to the project), and it is also possible to run it locally by following the instructions below.
 Built by Nelson Dornelas using the NEVM Stack - node.js, express.js, vue.js, and MongoDB)
 
+## Deployed
+
+The Project is deployed on [now](https://zeit.co/now) and the mongodb is deployed on [mLab](https://mlab.com)
+
+```
+https://ammo-project.now.sh/
+```
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -39,7 +47,7 @@ npm install
 Run the server at the server folder( '/server' )
 
 ```
-npm start
+npm run dev
 ```
 
 Run the client at the website folder( '/website' )
