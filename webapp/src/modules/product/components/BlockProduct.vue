@@ -8,10 +8,10 @@
         <span class="product-name"><strong>{{ product.name }}</strong></span>
       </div>
       <span class="product-category"><strong>Categoria: </strong>{{ productCategory }} | {{ product.subCategory }}</span>
-      <span class="product-description">Detalhes: {{ product.description }}</span>
+      <span class="product-description">{{ product.description }}</span>
     </div>
     <div class="product-price">
-      {{ product.price}}
+      {{ product.price }}
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
   border-radius: 5px;
 
   .product-images {
-    width: 230px;
+    width: 220px;
     margin-right: 10px;
   }
 

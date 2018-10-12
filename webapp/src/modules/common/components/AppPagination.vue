@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 .list-pagination {
   display: flex;
   justify-content: space-between;

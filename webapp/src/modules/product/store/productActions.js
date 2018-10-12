@@ -17,7 +17,7 @@ export default {
     commit('clearDetail')
   },
 
-  async getList ({ commit, dispatch, state }) {
+  async getList ({ commit, state }) {
     try {
       const filter = { ...state.list.filter }
       Object.keys(filter).forEach(key => {

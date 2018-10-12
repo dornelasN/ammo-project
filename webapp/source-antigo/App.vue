@@ -1,34 +1,20 @@
 <template>
   <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
     <router-view/>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App'
-}
-</script>
-
-<style lang="scss">
-$brand-primary: #0000ff;
-
-:root {
-  --primary: #000000;
-  --blue: #ff0000;
-}
-
-.btn-primary {
-  color: #000;
-  background-color: #ff0000;
-  border-color: #ff0000;
-}
-
+<style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
