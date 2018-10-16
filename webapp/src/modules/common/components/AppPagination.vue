@@ -60,7 +60,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
-  padding-right: 40px;
+  margin-top: 15px;
+  padding: 0 40px 10px;
 }
 </style>
