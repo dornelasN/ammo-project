@@ -59,6 +59,10 @@ export default {
       type: String,
       required: true
     },
+    category: {
+      type: String,
+      default: undefined
+    },
     deal: {
       type: Boolean,
       default: undefined
@@ -176,9 +180,11 @@ export default {
           color: black;
           border: 0;
           border-radius: 0;
+          text-align: left;
 
           &.category-selected {
             background-color: #B39990;
+            color: white;
           }
         }
       }
@@ -191,10 +197,13 @@ export default {
       border: 0;
       border-radius: 5px;
       margin-bottom: 15px;
+      text-align: left;
+      font-weight: 600;
     }
 
     .dealSelected {
       background-color: #B39990;
+      color: white;
     }
   }
 </style>

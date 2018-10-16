@@ -7,7 +7,7 @@
         <span><strong> Ordenar por: </strong></span><br>
         <span class="clickable" :class="{'sort-by-selected': sortBy === 'name' }" @click="orderBy('name')"> nome </span> - 
         <span class="clickable" :class="{'sort-by-selected': sortBy === 'category' }" @click="orderBy('category')"> categoria </span> -
-        <span class="clickable" :class="{'sort-by-selected': sortBy === 'price' }" @click="orderBy('price')"> preço original </span>
+        <span class="clickable" :class="{'sort-by-selected': sortBy === 'price' }" @click="orderBy('finalPrice')"> preço </span>
       </div>
     </div>
 

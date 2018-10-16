@@ -97,7 +97,9 @@ for (let i = 0; i < dataAmount; i += 1) {
   const color = faker.random.arrayElement(colors);
   const adjective = faker.commerce.productAdjective();
   const name = subCategory.split(" ")[0];
-
+  const deal = faker.random.boolean();
+  const price = faker.finance.amount(10, 3000, 2);
+  const finalPrice = deal ? price * 0.8 : price;
   const product = {
     status: ProductStatics.statuses.ACTIVE,
     name: ` ${name} ${color}`,
@@ -107,8 +109,9 @@ for (let i = 0; i < dataAmount; i += 1) {
     images: Array.from({ length: 4 }, () =>
       faker.random.arrayElement(photoList)
     ),
-    price: faker.finance.amount(10, 3000, 2),
-    deal: faker.random.boolean()
+    price,
+    deal,
+    finalPrice, 
   };
 
   productList.push(product);

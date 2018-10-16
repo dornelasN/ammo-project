@@ -11,7 +11,11 @@
       <span class="product-description">{{ product.description }}</span>
     </div>
     <div class="product-price">
-      <block-product-price :isDeal="product.deal" :price="product.price"/>
+      <block-product-price
+        :isDeal="product.deal"
+        :price="product.price"
+        :final-price="product.finalPrice"
+      />
     </div>
   </div>
 </template>
