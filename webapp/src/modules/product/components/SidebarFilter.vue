@@ -184,6 +184,7 @@ export default {
 
           &.category-selected {
             background-color: #B39990;
+            font-weight: bold;
             color: white;
           }
         }
