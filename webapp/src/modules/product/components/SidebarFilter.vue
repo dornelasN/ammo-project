@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-filter">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <h4> Pesquisa </h4>
+      <h6> Encontre o produto dos seus sonhos </h6>
       <div class="name-search">
         <b-input-group>
           <b-input-group-text slot="prepend">
@@ -15,11 +15,6 @@
             @input.native="(e) => onFilter(e.target.value)"
           />
         </b-input-group>
-        <!-- <font-awesome-icon
-          v-if="general"
-          icon="timesCircle"
-          @click="$emit('update:filterGeneral', '')"
-        /> -->
       </div>
       <div class="category-search">
         <b-button
@@ -46,14 +41,8 @@
           class="deal-filter-button"
           :class="{'dealSelected': deal}"
           @click="toggleDealFilter"
-        > Promoções
+        > Veja nossas ofertas exclusivas!
         </b-button>
-      </div>
-      <div class="list-sort-by">
-        <span> Ordenar por: </span>
-        <span class="clickable" :class="{'sort-by-selected': sortBy === 'name' }" @click="orderBy('name')"> nome </span> - 
-        <span class="clickable" :class="{'sort-by-selected': sortBy === 'category' }" @click="orderBy('category')"> categoria </span> -
-        <span class="clickable" :class="{'sort-by-selected': sortBy === 'price' }" @click="orderBy('price')"> preço original </span>
       </div>
     </div>
   </div>
@@ -62,7 +51,6 @@
 <script>
 import debounce from 'lodash/debounce'
 import { productFilters } from '@/modules/common/filters'
-import { mapState } from 'vuex'
 
 export default {
   components: {},
@@ -70,10 +58,6 @@ export default {
     general: {
       type: String,
       required: true
-    },
-    category: {
-      type: String,
-      default: undefined
     },
     deal: {
       type: Boolean,
@@ -96,7 +80,6 @@ export default {
     }
   },
   computed: {
-    ...mapState('product', { sortBy: state => state.list.sortBy }),
     caret() {
       return this.collapsed ? 'caret-up' : 'caret-down';
     }
@@ -104,14 +87,13 @@ export default {
   watch: {},
 
   methods: {
-    orderBy (value) {
-      this.$emit('update:sortBy', value);
-    },
     onFilter: debounce(function (value) {
       this.$emit('update:filterGeneral', value)
     }, 400),
     toggleSelectCategory (e) {
-      this.$emit('update:filterCategory', e.target.value)
+      let selected = e.target.value;
+      if (selected === this.category) selected = ''
+      this.$emit('update:filterCategory', selected)
     },
     checkCategorySelected (category) {
       if (this.category === category) return true
@@ -136,12 +118,8 @@ export default {
     justify-content: space-around;
     align-items: flex-end;
 
-    .clickable {
-      cursor: pointer;
-    }
-
-    .sort-by-selected {
-      font-weight: bold;
+    h6 {
+      text-align: left;
     }
 
     .name-search {
@@ -178,7 +156,7 @@ export default {
 
       .category-collapse-button {
         width: 100%;
-        background-color: #e0b9aa;
+        background-color: #B39990;
         color: black;
         border: 0;
         border-radius: 0;
@@ -200,7 +178,7 @@ export default {
           border-radius: 0;
 
           &.category-selected {
-            background-color: #e0b9aa;
+            background-color: #B39990;
           }
         }
       }
@@ -216,7 +194,7 @@ export default {
     }
 
     .dealSelected {
-      background-color: #e0b9aa;
+      background-color: #B39990;
     }
   }
 </style>

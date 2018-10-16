@@ -31,8 +31,8 @@ export default {
   justify-content: flex-start;
   background-color: white;
 
-  -webkit-box-shadow: 0 5px 6px -4px black;
-    -moz-box-shadow: 0 5px 6px -4px black;
-        box-shadow: 0 5px 6px -4px black;
+  -webkit-box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.25);
 }
 </style>

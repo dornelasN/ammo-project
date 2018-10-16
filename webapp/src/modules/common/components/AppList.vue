@@ -1,6 +1,15 @@
 <template>
   <div class="app-list">
-    <h2><strong> {{ listTitle }}</strong><small>  ({{ total }})</small></h2>
+    <div class="row list-title">
+      <h2><strong> {{ listTitle }}</strong><small> ({{ total }})</small></h2>
+
+      <div class="list-sort-by">
+        <span><strong> Ordenar por: </strong></span><br>
+        <span class="clickable" :class="{'sort-by-selected': sortBy === 'name' }" @click="orderBy('name')"> nome </span> - 
+        <span class="clickable" :class="{'sort-by-selected': sortBy === 'category' }" @click="orderBy('category')"> categoria </span> -
+        <span class="clickable" :class="{'sort-by-selected': sortBy === 'price' }" @click="orderBy('price')"> preço original </span>
+      </div>
+    </div>
 
     <div class="row selected-filters">
       <div 
@@ -65,13 +74,16 @@ export default {
     perPage: {
       type: Number,
       required: true
-    }
+    },
   },
   data () {
     return {}
   },
   computed: {
-    ...mapState('product', { productList: state => state.list }),
+    ...mapState('product', { 
+      productList: state => state.list,
+      sortBy: state => state.list.sortBy
+    }),
     listTitle () {
       if (this.general) return this.general
       return 'Lista de Produtos'
@@ -96,7 +108,11 @@ export default {
   },
   watch: {},
 
-  methods: {}
+  methods: {
+    orderBy (value) {
+      this.$emit('update:sortBy', value);
+    },
+  }
 }
 </script>
 
@@ -106,10 +122,34 @@ export default {
   margin-top: 0;
 
   .list-title {
+    display: flex;
+    justify-content: space-between;
     font-size: 1.5em;
+    text-align: left;
+
+    small {
+      font-size: 70%;
+    }
+    
+    .list-sort-by {
+      font-size: 70%;
+      text-align: right;
+      align-self: center;
+
+      .clickable {
+        cursor: pointer;
+      }
+
+      .sort-by-selected {
+        font-weight: bold;
+      }
+    }
   }
 
+  
+
   .selected-filters {
+    min-height: 35px;
     padding-left: 15px;
     margin-bottom: 10px;
 
@@ -119,9 +159,10 @@ export default {
       .badge {
         width: 110px;
         color: white;
-        -webkit-box-shadow: 0 5px 6px -4px black;
-          -moz-box-shadow: 0 5px 6px -4px black;
-              box-shadow: 0 5px 6px -4px black;
+        background-color: #E23121;
+        -webkit-box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.5);
+          -moz-box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.5);
+              box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.5);
       }
     }
   }

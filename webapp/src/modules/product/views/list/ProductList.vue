@@ -7,7 +7,6 @@
           :general="filterGeneral"
           :category="filterCategory"
           :deal="filterDeal"
-          @update:sortBy="(val) => sortBy = val"
           @update:filterGeneral="(val) => filterGeneral = val"
           @update:filterCategory="(val) => filterCategory = val"
           @update:filterDeal="(val) => filterDeal = val"
@@ -19,6 +18,7 @@
           :total="total"
           :current-page.sync="currentPage"
           :per-page.sync="perPage"
+          @update:sortBy="(val) => sortBy = val"
         />
       </div>
     </div>
