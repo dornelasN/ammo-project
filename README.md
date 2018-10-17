@@ -10,7 +10,7 @@ Built by Nelson Dornelas using the NEVM Stack - node.js, express.js, vue.js, and
 The Project is deployed on [now](https://zeit.co/now) and the mongodb is deployed on [mLab](https://mlab.com)
 
 ```
-https://ammo-project.now.sh/
+https://ammo-project-pos-piloto.now.sh/
 ```
 
 ## Getting Started
